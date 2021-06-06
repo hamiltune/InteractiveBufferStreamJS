@@ -1,0 +1,16 @@
+<html>
+    <a id="begin" style="padding:20px;background-color: lightblue;">Click here to begin</a>
+</html>
+<script type="module">
+    import HJSContext from "./hjs.js";
+    import HJSMicStream from "./hjsmicstream.js";
+
+    function begin() {
+        let hctx = new HJSContext(256, 44100, 200);
+        hctx.start();
+        let hms = new HJSMicStream(256, 44100, function(e){hctx.Enqueue(e);}); 
+        hms.start();
+    }
+
+    document.getElementById("begin").addEventListener("click", ()=>begin());
+</script>
